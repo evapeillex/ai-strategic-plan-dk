@@ -81,7 +81,8 @@
         if (slide.media.video) {
           const embed = getVideoEmbedUrl(slide.media.video);
           if (embed) {
-            videoHtml = `<iframe class="slide-media-video slide-media-embed" src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
+            const isShorts = /shorts\//i.test(slide.media.video);
+            videoHtml = `<iframe class="slide-media-video slide-media-embed${isShorts ? " slide-media-shorts" : ""}" src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe>`;
           } else {
             videoHtml = `<video class="slide-media-video" src="${escapeHtml(slide.media.video)}" controls playsinline autoplay muted loop></video>`;
           }

@@ -267,9 +267,15 @@ body {
 }
 
 .slide-media-embed {
+  width: 100%;
   aspect-ratio: 16 / 9;
   min-height: 180px;
   border: none;
+}
+
+.slide-media-embed.slide-media-shorts {
+  aspect-ratio: 9 / 16;
+  min-height: 280px;
 }
 
 .slide-media-image {
