@@ -82,7 +82,10 @@
           const embed = getVideoEmbedUrl(slide.media.video);
           if (embed) {
             const isShorts = /shorts\//i.test(slide.media.video);
-            videoHtml = `<iframe class="slide-media-video slide-media-embed${isShorts ? " slide-media-shorts" : ""}" src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe>`;
+            const attrs = isShorts
+              ? `width="315" height="560" class="slide-media-video slide-media-embed slide-media-shorts"`
+              : `class="slide-media-video slide-media-embed"`;
+            videoHtml = `<iframe ${attrs} src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe>`;
           } else {
             videoHtml = `<video class="slide-media-video" src="${escapeHtml(slide.media.video)}" controls playsinline autoplay muted loop></video>`;
           }

@@ -266,12 +266,13 @@ body {
   transition-delay: 0.3s;
 }
 
-/* Reel format: narrow vertical container for Shorts */
+/* Reel format: exact 9:16 ratio for Shorts (315×560) */
 .slide-media .slide-media-video.slide-media-shorts {
   flex: 0 0 auto;
-  width: 280px;
-  max-width: 280px;
-  min-width: 280px;
+  width: 315px;
+  height: 560px;
+  max-width: 315px;
+  min-width: 315px;
   border-radius: 16px;
   overflow: hidden;
 }
@@ -284,9 +285,12 @@ body {
 }
 
 .slide-media-embed.slide-media-shorts {
+  width: 315px;
+  height: 560px;
   aspect-ratio: 9 / 16;
-  min-height: 0;
-  height: auto;
+  min-width: 315px;
+  min-height: 560px;
+  border: none;
 }
 
 .slide-media-image {
