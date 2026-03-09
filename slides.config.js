@@ -256,8 +256,8 @@ const SLIDES = [
     title: "",
     theme: "light",
     media: {
-      // Add your YouTube (youtube.com/watch?v=ID or youtu.be/ID) or Vimeo URL after uploading
-      video: null,
+      // Replace with your YouTube or Vimeo URL after uploading (e.g. "https://www.youtube.com/watch?v=YOUR_ID")
+      video: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
       image: "assets/screenshot.png",
     },
     animation: "fade",
