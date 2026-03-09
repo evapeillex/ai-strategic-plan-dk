@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Strategic Plan DK</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="slideshow" class="slideshow">
+    <div id="slides-container" class="slides-container"></div>
+
+    <nav class="nav">
+      <button id="btn-prev" class="nav-btn nav-btn-prev" aria-label="Previous slide">
+      <svg class="nav-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+      <span id="slide-counter" class="slide-counter">1 / 1</span>
+      <button id="btn-next" class="nav-btn nav-btn-next" aria-label="Next slide">
+      <svg class="nav-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    </nav>
+
+    <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progress-fill" class="progress-fill"></div>
+    </div>
+
+    <div id="anchor-bubbles" class="anchor-bubbles" aria-label="Section anchors">
+      <button type="button" class="anchor-bubble" data-anchor="0" aria-label="Jump to section 1">1</button>
+      <button type="button" class="anchor-bubble" data-anchor="1" aria-label="Jump to section 2">2</button>
+      <button type="button" class="anchor-bubble" data-anchor="2" aria-label="Jump to section 3">3</button>
+      <button type="button" class="anchor-bubble" data-anchor="3" aria-label="Jump to section 4">4</button>
+      <button type="button" class="anchor-bubble" data-anchor="4" aria-label="Jump to section 5">5</button>
+    </div>
+  </div>
+
+  <script src="slides.config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
