@@ -266,6 +266,16 @@ body {
   transition-delay: 0.3s;
 }
 
+/* Reel format: narrow vertical container for Shorts */
+.slide-media .slide-media-video.slide-media-shorts {
+  flex: 0 0 auto;
+  width: 280px;
+  max-width: 280px;
+  min-width: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
 .slide-media-embed {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -275,7 +285,8 @@ body {
 
 .slide-media-embed.slide-media-shorts {
   aspect-ratio: 9 / 16;
-  min-height: 280px;
+  min-height: 0;
+  height: auto;
 }
 
 .slide-media-image {
