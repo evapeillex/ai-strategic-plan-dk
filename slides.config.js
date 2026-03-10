@@ -1,5 +1,5 @@
 // Slide indices for anchor bubbles 1, 2, 3, 4, 5 (0-based: bubble 1→slide 2, bubble 2→slide 6, bubble 3→slide 10, bubble 4→slide 11, bubble 5→concern slide)
-const ANCHOR_SLIDES = [1, 5, 9, 10, 12];
+const ANCHOR_SLIDES = [1, 5, 9, 10, 14];
 
 const SLIDES = [
   {
@@ -259,6 +259,20 @@ const SLIDES = [
       video: "https://youtube.com/shorts/BzReomuDIQw?feature=share",
       image: "assets/screenshot.png",
     },
+    animation: "fade",
+  },
+  {
+    title: "HorseAlytics",
+    theme: "light",
+    media: {
+      embedUrl: "https://customer-ldidz2g91gd7rdrl.cloudflarestream.com/4bf697c10fb090731769c1301f72978b/iframe?poster=https%3A%2F%2Fcustomer-ldidz2g91gd7rdrl.cloudflarestream.com%2F4bf697c10fb090731769c1301f72978b%2Fthumbnails%2Fthumbnail.jpg%3Ftime%3D%26height%3D600&title=HorseAlytics",
+    },
+    animation: "fade",
+  },
+  {
+    title: "",
+    theme: "light",
+    images: ["assets/horse-phones.png", "assets/horse-profile.png"],
     animation: "fade",
   },
   {

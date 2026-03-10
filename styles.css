@@ -330,6 +330,59 @@ body {
   }
 }
 
+/* Two-image slide with staggered transition */
+.slide-with-images .slide-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.slide-images-only .slide-main {
+  margin-top: 0;
+}
+
+.slide-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.slide-images-item {
+  flex: 1 1 40%;
+  min-width: 200px;
+  max-width: 320px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(0.5rem) scale(0.98);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition-delay: var(--slide-images-delay, 0s);
+}
+
+.slide-with-images.active .slide-images-item,
+.slide-with-images.entering .slide-images-item {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (max-width: 900px) {
+  .slide-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slide-images-item {
+    max-width: 100%;
+  }
+}
+
 /* Nav, progress, anchors on light slide */
 .slide-counter,
 .anchor-bubble {

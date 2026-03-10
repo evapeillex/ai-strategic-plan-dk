@@ -80,12 +80,16 @@
         let videoHtml = "";
         if (slide.media.video) {
           const embed = getVideoEmbedUrl(slide.media.video);
+          const watchUrl = getYouTubeWatchUrl(slide.media.video);
           if (embed) {
             const isShorts = /shorts\//i.test(slide.media.video);
             const attrs = isShorts
               ? `width="315" height="560" class="slide-media-video slide-media-embed slide-media-shorts"`
               : `class="slide-media-video slide-media-embed"`;
-            videoHtml = `<iframe ${attrs} src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe>`;
+            const fallbackLink = watchUrl
+              ? `<a href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener" class="slide-media-fallback">Watch on YouTube</a>`
+              : "";
+            videoHtml = `<div class="slide-media-video-wrap">${fallbackLink}<iframe ${attrs} src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe></div>`;
           } else {
             videoHtml = `<video class="slide-media-video" src="${escapeHtml(slide.media.video)}" controls playsinline autoplay muted loop></video>`;
           }
