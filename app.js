@@ -26,8 +26,9 @@
     slides.forEach((slide, index) => {
       const el = document.createElement("div");
       const hasMediaOnly = slide.media && !slide.title;
+      const hasImagesOnly = slide.images && !slide.title;
       const hasCustomBg = slide.backgroundColor;
-      el.className = `slide ${index === 0 ? "active" : ""} ${slide.subheadline ? "slide-with-subheadline" : ""} ${slide.ideas ? "slide-with-ideas" : ""} ${slide.columns ? "slide-with-columns" : ""} ${slide.media ? "slide-with-media" : ""} ${hasMediaOnly ? "slide-media-only" : ""} ${slide.theme === "light" ? "slide-theme-light" : ""} ${hasCustomBg ? "slide-custom-bg" : ""}`;
+      el.className = `slide ${index === 0 ? "active" : ""} ${slide.subheadline ? "slide-with-subheadline" : ""} ${slide.ideas ? "slide-with-ideas" : ""} ${slide.columns ? "slide-with-columns" : ""} ${slide.media ? "slide-with-media" : ""} ${slide.images ? "slide-with-images" : ""} ${hasMediaOnly ? "slide-media-only" : ""} ${hasImagesOnly ? "slide-images-only" : ""} ${slide.theme === "light" ? "slide-theme-light" : ""} ${hasCustomBg ? "slide-custom-bg" : ""}`;
       if (hasCustomBg) {
         el.style.setProperty("--slide-bg-color", slide.backgroundColor);
       }
@@ -78,18 +79,16 @@
       let mediaHtml = "";
       if (slide.media) {
         let videoHtml = "";
-        if (slide.media.video) {
+        if (slide.media.embedUrl) {
+          videoHtml = `<iframe class="slide-media-video slide-media-embed" src="${escapeHtml(slide.media.embedUrl)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe>`;
+        } else if (slide.media.video) {
           const embed = getVideoEmbedUrl(slide.media.video);
-          const watchUrl = getYouTubeWatchUrl(slide.media.video);
           if (embed) {
             const isShorts = /shorts\//i.test(slide.media.video);
             const attrs = isShorts
               ? `width="315" height="560" class="slide-media-video slide-media-embed slide-media-shorts"`
               : `class="slide-media-video slide-media-embed"`;
-            const fallbackLink = watchUrl
-              ? `<a href="${escapeHtml(watchUrl)}" target="_blank" rel="noopener" class="slide-media-fallback">Watch on YouTube</a>`
-              : "";
-            videoHtml = `<div class="slide-media-video-wrap">${fallbackLink}<iframe ${attrs} src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe></div>`;
+            videoHtml = `<iframe ${attrs} src="${escapeHtml(embed)}" allowfullscreen allow="autoplay; encrypted-media" loading="eager"></iframe>`;
           } else {
             videoHtml = `<video class="slide-media-video" src="${escapeHtml(slide.media.video)}" controls playsinline autoplay muted loop></video>`;
           }
@@ -98,6 +97,16 @@
           ? `<img class="slide-media-image" src="${escapeHtml(slide.media.image)}" alt="">`
           : "";
         mediaHtml = `<div class="slide-media">${videoHtml}${imageHtml}</div>`;
+      }
+      let imagesHtml = "";
+      if (slide.images && slide.images.length > 0) {
+        imagesHtml = `
+          <div class="slide-images">
+            ${slide.images.map((src, i) => `
+              <img class="slide-images-item" src="${escapeHtml(src)}" alt="" style="--slide-images-delay: ${i * 0.3}s">
+            `).join("")}
+          </div>
+        `;
       }
       const titleHtml = slide.title ? renderTitle(slide.title, slide.titleHighlight) : "";
       const titleEl = titleHtml ? `<h1 class="slide-title">${titleHtml}</h1>` : "";
@@ -109,6 +118,7 @@
           ${ideasHtml}
           ${slide.columns ? `<div class="slide-columns">${columnsHtml}</div>` : ""}
           ${mediaHtml}
+          ${imagesHtml}
         </div>
       `;
       slidesContainer.appendChild(el);
